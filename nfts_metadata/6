@@ -1,0 +1,43 @@
+{
+  "description": "The M4 SOPMOD (Special Operations Peculiar MODification) kits are accessory systems for the M4A1 carbine and other weapons used by USSOCOM (United States Special Operations Command). The kit allows special operations personnel to configure their weapons to fit individual preference and mission requirements. The SOPMOD Block II kit includes new advanced optics, thermal and night vision devices, a weapon shot counter and uses RIS II rails.", 
+  "external_url": "https://girlsfrontline.fandom.com/wiki/M4_SOPMODII", 
+  "image": "https://gf.rus.wiki/media/uploads/1ce68605-gf.rus.wiki-m4-sopmod-ii-mod-iii-m4-sopmod-ii-costume1-d1.png", 
+  "name": "M4 SOPMOD",
+  "attributes": [
+    {
+      "trait_type": "Health", 
+      "value": 55
+    }, 
+    {
+      "trait_type": "Damage", 
+      "value": 18
+    }, 
+    {
+      "trait_type": "Accuracy", 
+      "value": 7
+    }, 
+    {
+      "trait_type": "Fire Rate", 
+      "value": 54
+    },
+    {
+      "trait_type": "Movement Speed", 
+      "value": 10
+    },
+    {
+      "display_type": "boost_number", 
+      "trait_type": "Movement Speed", 
+      "value": 15
+    },
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "Health boost", 
+      "value": 20
+    }, 
+    {
+      "display_type": "number", 
+      "trait_type": "Generation", 
+      "value": 1
+    }
+  ]
+}

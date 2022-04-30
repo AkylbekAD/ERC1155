@@ -1,0 +1,43 @@
+{
+  "description": "The Mosin-Nagant is a bolt-action rifle developed by Captain Sergei Mosin and Léon Nagant from 1882-1891, and was the service rifle of the Russian Empire, Soviet Union and various other nations. The weapon has a simple and rugged design, which made it cheap to manufacture and simple to use. However that also meant the rifle did not perform as well as foreign counterparts in certain aspects, although compensated with its ease of use and low maintenance requirements.", 
+  "external_url": "https://girlsfrontline.fandom.com/wiki/Mosin-Nagant#Normal", 
+  "image": "https://static.wikia.nocookie.net/girlsfrontline/images/e/e3/Mosinnagant_dmg.png/revision/latest/scale-to-width-down/1000?cb=20160910131518", 
+  "name": "MOSIN-NAGANT",
+  "attributes": [
+    {
+      "trait_type": "Health", 
+      "value": 44
+    }, 
+    {
+      "trait_type": "Damage", 
+      "value": 45
+    }, 
+    {
+      "trait_type": "Accuracy", 
+      "value": 10
+    }, 
+    {
+      "trait_type": "Fire Rate", 
+      "value": 20
+    },
+    {
+      "trait_type": "Movement Speed", 
+      "value": 7
+    },
+    {
+      "display_type": "boost_number", 
+      "trait_type": "Health", 
+      "value": 10
+    },
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "Accuracy Increase", 
+      "value": 20
+    }, 
+    {
+      "display_type": "number", 
+      "trait_type": "Generation", 
+      "value": 1
+    }
+  ]
+}

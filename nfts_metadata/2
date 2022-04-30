@@ -1,0 +1,43 @@
+{
+  "description": "The LWMMG is designed to fill the gap between 7.62 mm and .50 BMG machine guns. The weapon uses the .338 Norma Magnum round, giving it greater lethality and double the range of the 7.62 NATO round. The LWMMG has a rate of fire of 500 rounds per minute, an effective range of 1,700 meters (1,860 yards), and a maximum range of 5,642 meters (6,170 yards).", 
+  "external_url": "https://gf.rus.wiki/t-dolls/lwmmg/", 
+  "image": "https://gf.rus.wiki/media/uploads/gf.rus.wiki-lwmmg-lwmmg-d.png", 
+  "name": "LWMMG",
+  "attributes": [
+    {
+      "trait_type": "Health", 
+      "value": 87
+    }, 
+    {
+      "trait_type": "Damage", 
+      "value": 28
+    }, 
+    {
+      "trait_type": "Accuracy", 
+      "value": 4
+    }, 
+    {
+      "trait_type": "Fire Rate", 
+      "value": 90
+    },
+    {
+      "trait_type": "Movement Speed", 
+      "value": 4
+    },
+    {
+      "display_type": "boost_number", 
+      "trait_type": "Durability", 
+      "value": 10
+    },
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "Fire rate Increase", 
+      "value": 40
+    }, 
+    {
+      "display_type": "number", 
+      "trait_type": "Generation", 
+      "value": 1
+    }
+  ]
+}
