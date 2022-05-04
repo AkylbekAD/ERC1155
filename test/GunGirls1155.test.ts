@@ -18,7 +18,7 @@ describe("ERC1155 contract", function () {
   beforeEach(async function() {
     GunGirls1155 = await ethers.getContractFactory("GunGirls1155");
     [owner, acc1, acc2] = await ethers.getSigners();    
-    GunGirls1155Interface = await GunGirls1155.deploy("GunGirls1155", "GGS");
+    GunGirls1155Interface = await GunGirls1155.deploy();
     await GunGirls1155Interface.deployed();
 
     testMintBatch(owner, owner.address, [1,2,3,4,5], [10,20,30,40,50], bytes32);
@@ -41,7 +41,7 @@ describe("ERC1155 contract", function () {
 
   describe("Getter public functions", function() {
     it("Should return base URI from 'uri' getter function", async function() {
-      expect(await GunGirls1155Interface.uri(1)).to.equal("https://gateway.pinata.cloud/ipfs/QmSKqYVzHgSUNRQgDXcHxdst3LoUN3ij6Li5HaYd9P1Uz4/{id}")
+      expect(await GunGirls1155Interface.uri(1)).to.equal("https://ipfs.io/ipfs/QmSKqYVzHgSUNRQgDXcHxdst3LoUN3ij6Li5HaYd9P1Uz4/{id}")
     })
 
     it("Should return contract name from 'name' getter function", async function() {
@@ -60,7 +60,7 @@ describe("ERC1155 contract", function () {
   describe("Only owner functions", function() {
     describe("mint funtion", function() {
         it("Only owner could mint new NFT", async function() {
-            expect(GunGirls1155Interface.connect(acc1).mint(acc1.address,[1],[10],bytes32)).to.be.revertedWith("Ownable: caller is not the owner")
+            expect(GunGirls1155Interface.connect(acc1).mint(acc1.address,[1],[10],bytes32)).to.be.revertedWith("You dont have ADMIN rights")
         })
         
         it("Owner could mint new NFT to his address", async function() {
@@ -71,7 +71,7 @@ describe("ERC1155 contract", function () {
 
     describe("mintBatch funtion", function() {
         it("Only owner could mint batch new NFT", async function() {
-            expect(GunGirls1155Interface.connect(acc1).mintBatch(acc1.address,[1,2],[10,20],bytes32)).to.be.revertedWith("Ownable: caller is not the owner")
+            expect(GunGirls1155Interface.connect(acc1).mintBatch(acc1.address,[1,2],[10,20],bytes32)).to.be.revertedWith("You dont have ADMIN rights")
         })
         
         it("Owner could mint batch new NFT to his address", async function() {
@@ -97,7 +97,7 @@ describe("ERC1155 contract", function () {
 
     describe("burn funtion", function() {
         it("Only owner could burn token amount", async function() {
-            expect(GunGirls1155Interface.connect(acc1).burn(owner.address,[1],[10])).to.be.revertedWith("Ownable: caller is not the owner")
+            expect(GunGirls1155Interface.connect(acc1).burn(owner.address,[1],[10])).to.be.revertedWith("You dont have ADMIN rights")
         })
 
         it("Owner could burn token amount", async function() {
@@ -108,7 +108,7 @@ describe("ERC1155 contract", function () {
 
     describe("burnBatch funtion", function() {
         it("Only owner could burn batch NFT", async function() {
-            expect(GunGirls1155Interface.connect(acc1).burnBatch(owner.address,[1,2],[10,20])).to.be.revertedWith("Ownable: caller is not the owner")
+            expect(GunGirls1155Interface.connect(acc1).burnBatch(owner.address,[1,2],[10,20])).to.be.revertedWith("You dont have ADMIN rights")
         })
         
         it("Owner could burn batch NFT to his address", async function() {
@@ -140,5 +140,30 @@ describe("ERC1155 contract", function () {
         expect(await GunGirls1155Interface.balanceOf(acc1.address, 1)).to.be.equal("10")
         expect(await GunGirls1155Interface.balanceOf(acc2.address, 2)).to.be.equal("10")
       })
+  })
+
+  describe("giveAdminRights function", function() {
+    it("Only Owner can give another ADMIN_ROLE", async function() {
+      expect(GunGirls1155Interface.connect(acc1).giveAdminRights(acc2.address)).to.be.revertedWith("Ownable: caller is not the owner")
+    })
+
+    it("Owner can give another account ADMIN_ROLE", async function() {
+      await GunGirls1155Interface.connect(owner).giveAdminRights(acc1.address)
+      await testMintBatch(acc1, acc1.address, [1,2], [10,20], bytes32)
+      expect(await GunGirls1155Interface.balanceOf(acc1.address, 1)).to.equal("10")
+      expect(await GunGirls1155Interface.balanceOf(acc1.address, 2)).to.equal("20")
+      })
+  })
+
+  describe("revokeAdminRights function", function() {
+    it("Only Owner can revoke another ADMIN_ROLE", async function() {
+      expect(GunGirls1155Interface.connect(acc1).revokeAdminRights(acc2.address)).to.be.revertedWith("Ownable: caller is not the owner")
+    })
+
+    it("Owner can revoke another account ADMIN_ROLE", async function() {
+      await GunGirls1155Interface.connect(owner).giveAdminRights(acc1.address)
+      await GunGirls1155Interface.connect(owner).revokeAdminRights(acc1.address)
+      expect(GunGirls1155Interface.connect(acc1).mint(acc1.address, 1, 10, bytes32)).to.be.revertedWith("You dont have ADMIN rights")
+    })
   })
 })
